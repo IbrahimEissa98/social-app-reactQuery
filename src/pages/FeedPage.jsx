@@ -158,14 +158,14 @@ export default function FeedPage() {
     }
   }, [inView]);
 
-  // useEffect(() => {
-  //   return () => {
-  //     queryClient.setQueryData(["posts"], (data) => ({
-  //       pages: data.pages.slice(0, 1),
-  //       pageParams: data.pageParams.slice(0, 1),
-  //     }));
-  //   };
-  // }, []);
+  useEffect(() => {
+    return () => {
+      queryClient.setQueryData(["posts"], (data) => ({
+        pages: data.pages.slice(0, 1),
+        pageParams: data.pageParams.slice(0, 1),
+      }));
+    };
+  }, []);
 
   return (
     <>
