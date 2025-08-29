@@ -211,9 +211,8 @@ export default function FeedPage() {
                       setIsCreate={setIsCreate}
                     />
                     {data.pages.length - 1 == pageNum &&
-                      index == page.data.posts.length - 5 && (
-                        <button ref={ref}></button>
-                      )}
+                      index == page.data.posts.length - 5 &&
+                      hasNextPage && <button ref={ref}></button>}
                   </React.Fragment>
                 ))}
               </React.Fragment>
