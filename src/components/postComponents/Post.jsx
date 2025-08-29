@@ -53,7 +53,7 @@ export default function Post({
             time={createdAt(post.createdAt)}
           />
           <DropdownActions
-            isUser={user._id == post.user._id}
+            isUser={user?._id == post.user._id}
             post={post}
             inFeed={isNavigate}
             // posts={posts}
@@ -103,7 +103,7 @@ export default function Post({
                 comment={comment}
                 post={post}
                 setPost={setPost}
-                isUser={user._id == post.user._id}
+                isUser={user?._id == post.user._id}
                 getSinglePost={getSinglePost}
                 setIsPost={setIsPost}
                 isPost={false}

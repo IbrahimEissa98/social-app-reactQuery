@@ -36,8 +36,8 @@ export default function Comment({
       mutationFn: (e) => {
         e.preventDefault();
         if (
-          user._id != post.user._id &&
-          user._id != comment.commentCreator._id
+          user?._id != post.user._id &&
+          user?._id != comment.commentCreator._id
         ) {
           return;
         }

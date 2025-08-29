@@ -7,7 +7,7 @@ export default function PostHeader({ post, photo, name, time }) {
   const { user } = useContext(isLoginContext);
 
   useEffect(() => {
-    if (post?.user._id == user._id) {
+    if (post?.user._id == user?._id) {
       setIsOnline(true);
     } else {
       setIsOnline(Math.floor(Math.random() * 10) % 2 == 0);
@@ -17,7 +17,7 @@ export default function PostHeader({ post, photo, name, time }) {
   return (
     <div className="photo-name flex items-center">
       <Link
-        to={post?.user._id == user._id ? `/profile` : `/friend/${post?._id}`}
+        to={post?.user._id == user?._id ? `/profile` : `/friend/${post?._id}`}
         className="relative"
       >
         <div
