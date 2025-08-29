@@ -15,11 +15,13 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { queryClient } from "./services/constants";
 import FriendPage from "./pages/FriendPage";
+import LoadingPage from "./components/LoadingPage";
 
 // export const queryClient = new QueryClient();
 
 function App() {
   const [theme, setTheme] = useState(null);
+  const [showLoadingPage, setShowLoadingPage] = useState(true);
 
   useEffect(() => {
     if (!("theme" in localStorage)) {
@@ -38,6 +40,12 @@ function App() {
         setTheme("light");
       }
     }
+
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        setShowLoadingPage(false);
+      }, 2000);
+    });
   }, []);
 
   function toggleTheme() {
@@ -115,6 +123,7 @@ function App() {
   ]);
   return (
     <>
+      {showLoadingPage && <LoadingPage />}
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools />
         <RouterProvider router={router}></RouterProvider>

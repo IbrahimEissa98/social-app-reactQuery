@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CreatePost from "../components/CreatePost";
 import Post from "../components/postComponents/Post";
 import { isLoginContext } from "../contexts/IsLoginContext";
@@ -7,13 +7,13 @@ import CreatePostBox from "../components/CreatePostBox";
 import PostModal from "../components/postComponents/PostModal";
 import DeleteModal from "../components/postComponents/DeleteModal";
 import { useDisclosure } from "@heroui/modal";
-import { useInfiniteQuery, useMutation } from "@tanstack/react-query";
-import { addToast, Button, Spinner } from "@heroui/react";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { addToast, Spinner } from "@heroui/react";
 import useApis from "../hooks/useApis";
 import { queryClient } from "../services/constants";
-import { useInView } from "react-intersection-observer";
 
 export default function FeedPage() {
+  const [posts, setPosts] = useState([]);
   const [post, setPost] = useState(null);
   const [isPost, setIsPost] = useState(false);
   const [isCreate, setIsCreate] = useState(true);
@@ -40,34 +40,17 @@ export default function FeedPage() {
 
   const { getAllPosts, deletePost, deleteComment } = useApis();
 
-  // const {
-  //   data: queryPosts,
-  //   isFetching,
-  //   isLoading,
-  //   isError,
-  //   error,
-  // } = useQuery({
-  //   queryKey: ["posts"],
-  //   queryFn: () => getAllPosts(page),
-  //   retry: 3,
-  //   select: (data) => data?.data.posts,
-  // });
-
-  const [ref, inView] = useInView();
-
   const {
-    data,
-    error,
-    fetchNextPage,
-    hasNextPage,
+    data: queryPosts,
     isFetching,
     isLoading,
-    isFetchingNextPage,
     isError,
-  } = useInfiniteQuery({
+    error,
+  } = useQuery({
     queryKey: ["posts"],
-    queryFn: getAllPosts,
-    getNextPageParam: (lastPage) => lastPage.data.paginationInfo.nextPage,
+    queryFn: () => getAllPosts(1),
+    retry: 3,
+    select: (data) => data?.data.posts,
   });
 
   if (isError) {
@@ -153,23 +136,20 @@ export default function FeedPage() {
   });
 
   useEffect(() => {
-    if (inView && hasNextPage) {
-      fetchNextPage();
-    }
-  }, [inView]);
-
-  // useEffect(() => {
-  //   return () => {
-  //     queryClient.setQueryData(["posts"], (data) => ({
-  //       pages: data.pages.slice(0, 1),
-  //       pageParams: data.pageParams.slice(0, 1),
-  //     }));
-  //   };
-  // }, []);
+    const windowHight = window.addEventListener("scroll", () => {
+      console.log(window.innerHeight());
+      console.log(window.screenY);
+      console.log(window.scrollY);
+    });
+  }, []);
+  useEffect(() => {
+    setPosts(queryPosts);
+    console.log(posts);
+  }, [queryPosts]);
 
   return (
     <>
-      <div className="grid gap-2 pb-0 w-full! relative">
+      <div className="grid gap-2 pb-5 w-full! relative">
         {isLoading ? (
           <>
             <IsLoadingPost />
@@ -177,7 +157,7 @@ export default function FeedPage() {
           </>
         ) : (
           <>
-            {isFetching && !isFetchingNextPage && (
+            {isFetching && (
               <div className="fixed flex justify-center items-center top-20 left-1/2 z-10 -translate-x-1/2 bg-gray-300 dark:bg-slate-700 rounded-2xl px-10 py-2">
                 <p className="px-2 animate-blink">Updating</p>
                 <Spinner
@@ -191,34 +171,25 @@ export default function FeedPage() {
               handleOpen={onOpenCreatePost}
               setIsCreate={setIsCreate}
             />
-            {data.pages.map((page, pageNum) => (
-              <React.Fragment key={pageNum}>
-                {page.data.posts.map((post, index) => (
-                  <React.Fragment key={index}>
-                    <Post
-                      key={post.id}
-                      number={index}
-                      post={post}
-                      commentsNum={0}
-                      isNavigate={true}
-                      setPost={setPost}
-                      isOpen={isOpenDelete}
-                      onOpen={onOpenDelete}
-                      onOpenChange={onOpenChangeDelete}
-                      setIsPost={setIsPost}
-                      onOpenPostModal={onOpenPostModal}
-                      onOpenCreatePost={onOpenCreatePost}
-                      setIsCreate={setIsCreate}
-                    />
-                    {data.pages.length - 1 == pageNum &&
-                      index == page.data.posts.length - 5 && (
-                        <button ref={ref}></button>
-                      )}
-                  </React.Fragment>
-                ))}
-              </React.Fragment>
+            {posts?.map((post, index) => (
+              <Post
+                key={post.id}
+                number={index}
+                post={post}
+                commentsNum={0}
+                isNavigate={true}
+                // posts={posts}
+                // setPosts={setPosts}
+                setPost={setPost}
+                isOpen={isOpenDelete}
+                onOpen={onOpenDelete}
+                onOpenChange={onOpenChangeDelete}
+                setIsPost={setIsPost}
+                onOpenPostModal={onOpenPostModal}
+                onOpenCreatePost={onOpenCreatePost}
+                setIsCreate={setIsCreate}
+              />
             ))}
-            {hasNextPage && <IsLoadingPost />}
           </>
         )}
         <DeleteModal
@@ -241,12 +212,13 @@ export default function FeedPage() {
           setPost={setPost}
         />
 
-        {data?.pages[0]?.data.posts && (
+        {queryPosts && (
           <PostModal
             post={post}
             isOpenModal={isOpenPostModal}
             onCloseModal={onClosePostModal}
             setPost={setPost}
+            // setPosts={setPosts}
             isOpen={isOpenDelete}
             onOpen={onOpenDelete}
             onOpenChange={onOpenChangeDelete}

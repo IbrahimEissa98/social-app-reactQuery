@@ -14,8 +14,8 @@ import useHelpers from "../../hooks/useHelpers";
 export default function Post({
   post,
   setPost,
-  posts,
-  setPosts,
+  // posts,
+  // setPosts,
   commentsNum = 0,
   isNavigate,
   getSinglePost,
@@ -56,8 +56,8 @@ export default function Post({
             isUser={user._id == post.user._id}
             post={post}
             inFeed={isNavigate}
-            posts={posts}
-            setPosts={setPosts}
+            // posts={posts}
+            // setPosts={setPosts}
             isPost={true}
             setPost={setPost}
             isOpen={isOpen}

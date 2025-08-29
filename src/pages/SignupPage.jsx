@@ -10,7 +10,7 @@ import PassToggle from "../components/PassToggle";
 import logo from "../assets/images/icon.svg";
 import loginGirl from "../assets/images/log-in-girl.svg";
 
-export default function SignupPage({ toggleTheme }) {
+export default function SignupPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [errMsg, setErrMsg] = useState("");
   const [succMsg, setSuccMsg] = useState("");
@@ -32,7 +32,7 @@ export default function SignupPage({ toggleTheme }) {
       dateOfBirth: "",
       gender: "",
     },
-    mode: "onTouched",
+    // mode: "onTouched",
     resolver: zodResolver(registerSchema),
   });
 
@@ -61,12 +61,9 @@ export default function SignupPage({ toggleTheme }) {
   return (
     <>
       <div
-        className={`w-11/12 md:w-3/4 lg:w-1/2 relative p-1.5 circle-border rounded-[38px] overflow-hidden`}
+        className={`max-w-[550px] md:max-w-[700px] m-3 w-full relative p-1.5 circle-border rounded-[38px] overflow-hidden`}
       >
-        <div className="relative z-10 w-full h-fit px-4 md:px-10 py-12 backdrop-blur-lg shadow-2xl bg-white dark:bg-slate-700 rounded-4xl">
-          <div className="absolute top-2.5 hover:animate-pulse animate-bounce left-1/2 -translate-x-1/2">
-            <ToggleTheme toggleTheme={toggleTheme} />
-          </div>
+        <div className="relative z-10 w-full h-fit px-4 md:px-10 py-12 backdrop-blur-3xl shadow-2xl bg-white/80 dark:bg-slate-700/80 rounded-4xl">
           <div className="mb-3">
             <div
               className={`relative w-full text-center flex justify-center items-center flex-col`}
@@ -100,15 +97,15 @@ export default function SignupPage({ toggleTheme }) {
             </div>
           </div>
           <Form
-            className="w-full flex flex-col gap-6"
+            className="w-full grid md:grid-cols-2 gap-6"
             onSubmit={handleSubmit(onSubmit)}
           >
-            <div className="relative w-full">
+            <div className="relative w-full col-span-2 md:col-span-1">
               <Input
                 // isRequired
                 classNames={{
                   inputWrapper:
-                    "border-2 border-blue-500/40 hover:border-blue-500/70 group-data-[focus=true]:border-blue-500",
+                    "border-2 border-blue-500/40 hover:border-blue-500/70 group-data-[focus=true]:border-blue-500 group-data-[focus=true]:hover:border-blue-500 group-data-[focus=true]:dark:bg-gray-600 bg-gray-50 dark:bg-gray-700",
                 }}
                 label="Name"
                 type="text"
@@ -117,12 +114,12 @@ export default function SignupPage({ toggleTheme }) {
                 errorMessage={errors.name?.message}
               />
             </div>
-            <div className="w-full relative">
+            <div className="w-full relative col-span-2 md:col-span-1">
               <Input
                 // isRequired
                 classNames={{
                   inputWrapper:
-                    "border-2 border-blue-500/40 hover:border-blue-500/70 group-data-[focus=true]:border-blue-500",
+                    "border-2 border-blue-500/40 hover:border-blue-500/70 group-data-[focus=true]:border-blue-500 group-data-[focus=true]:hover:border-blue-500 group-data-[focus=true]:dark:bg-gray-600 bg-gray-50 dark:bg-gray-700",
                 }}
                 label="Email"
                 type="email"
@@ -131,7 +128,7 @@ export default function SignupPage({ toggleTheme }) {
                 errorMessage={errors.email?.message}
               />
             </div>
-            <div className="w-full relative">
+            <div className="w-full relative col-span-2 md:col-span-1">
               <div className="absolute z-20 right-5 top-7 -translate-y-1/2">
                 <PassToggle isVisible={isVisible} setIsVisible={setIsVisible} />
               </div>
@@ -139,7 +136,7 @@ export default function SignupPage({ toggleTheme }) {
                 // isRequired
                 classNames={{
                   inputWrapper:
-                    "border-2 border-blue-500/40 hover:border-blue-500/70 group-data-[focus=true]:border-blue-500",
+                    "border-2 border-blue-500/40 hover:border-blue-500/70 group-data-[focus=true]:border-blue-500 group-data-[focus=true]:hover:border-blue-500 group-data-[focus=true]:dark:bg-gray-600 bg-gray-50 dark:bg-gray-700",
                 }}
                 label="Password"
                 type={`${!isVisible ? "password" : "text"}`}
@@ -148,7 +145,7 @@ export default function SignupPage({ toggleTheme }) {
                 errorMessage={errors.password?.message}
               />
             </div>
-            <div className="w-full relative">
+            <div className="w-full relative col-span-2 md:col-span-1">
               <div className="absolute z-20 right-5 top-7 -translate-y-1/2">
                 <PassToggle
                   isVisible={isVisibleRePass}
@@ -159,7 +156,7 @@ export default function SignupPage({ toggleTheme }) {
                 // isRequired
                 classNames={{
                   inputWrapper:
-                    "border-2 border-blue-500/40 hover:border-blue-500/70 group-data-[focus=true]:border-blue-500",
+                    "border-2 border-blue-500/40 hover:border-blue-500/70 group-data-[focus=true]:border-blue-500 group-data-[focus=true]:hover:border-blue-500 group-data-[focus=true]:dark:bg-gray-600 bg-gray-50 dark:bg-gray-700",
                 }}
                 label="Confirm Password"
                 type={`${!isVisibleRePass ? "password" : "text"}`}
@@ -174,12 +171,12 @@ export default function SignupPage({ toggleTheme }) {
                 errorMessage={errors.rePassword?.message}
               />
             </div>
-            <div className="w-full relative">
+            <div className="w-full relative col-span-2 md:col-span-1">
               <Input
                 // isRequired
                 classNames={{
                   inputWrapper:
-                    "border-2 border-blue-500/40 hover:border-blue-500/70 group-data-[focus=true]:border-blue-500",
+                    "border-2 border-blue-500/40 hover:border-blue-500/70 group-data-[focus=true]:border-blue-500 group-data-[focus=true]:hover:border-blue-500 group-data-[focus=true]:dark:bg-gray-600 bg-gray-50 dark:bg-gray-700",
                 }}
                 label="Date Of Birth"
                 type="date"
@@ -190,13 +187,17 @@ export default function SignupPage({ toggleTheme }) {
                 errorMessage={errors.dateOfBirth?.message}
               />
             </div>
-            <div className="w-full relative">
+            <div className="w-full relative col-span-2 md:col-span-1">
               <Select
                 // isRequired
                 classNames={{
                   trigger:
-                    "border-2 border-blue-500/40 hover:border-blue-500/70 group-data-[focus=true]:border-blue-500",
+                    "border-2 border-blue-500/40 hover:border-blue-500/70 group-data-[focus=true]:border-blue-500 group-data-[focus=true]:hover:border-blue-500 group-data-[focus=true]:dark:bg-gray-600 bg-gray-50 dark:bg-gray-700",
                 }}
+                // classNames={{
+                //   trigger:
+                //     "border-2 border-blue-500/40 hover:border-blue-500/70 group-data-[focus=true]:border-blue-500",
+                // }}
                 label="Gender"
                 {...register("gender", {
                   required: "Gender is required",
@@ -208,7 +209,7 @@ export default function SignupPage({ toggleTheme }) {
                 <SelectItem key={"female"}>Female</SelectItem>
               </Select>
             </div>
-            <div className="w-full">
+            <div className="w-full col-span-2">
               <Button
                 type="submit"
                 variant="solid"
@@ -229,7 +230,7 @@ export default function SignupPage({ toggleTheme }) {
                 </p>
               )}
               <Link
-                className="text-blue-500 ms-auto block w-fit capitalize italic font-semibold mt-3"
+                className="text-blue-500 ms-auto block w-fit capitalize italic font-semibold mt-4"
                 to={"/login"}
               >
                 already have account?

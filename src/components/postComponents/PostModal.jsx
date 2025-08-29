@@ -11,7 +11,6 @@ export default function PostModal({
   onOpenChange,
   setIsPost,
   setCurrentComment,
-  setPosts,
   setIsCreate,
   onOpenCreatePost,
 }) {
@@ -37,7 +36,6 @@ export default function PostModal({
                   post={post}
                   commentsNum={5}
                   isNavigate={true}
-                  setPosts={setPosts}
                   setPost={setPost}
                   isOpen={isOpen}
                   onOpen={onOpen}

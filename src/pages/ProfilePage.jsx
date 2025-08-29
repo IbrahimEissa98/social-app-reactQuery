@@ -79,6 +79,7 @@ export default function ProfilePage() {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setPosts(profilePosts?.reverse());
   }, [isFetching]);
 

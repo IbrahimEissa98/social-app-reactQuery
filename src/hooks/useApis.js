@@ -4,14 +4,15 @@ const baseUrl = "https://linked-posts.routemisr.com/";
 
 export default function useApis() {
   // getAllPosts
-  function getAllPosts() {
+  function getAllPosts({ pageParam = 1 }) {
     return axios.get(baseUrl + "posts/", {
       headers: {
         token: localStorage.getItem("token"),
       },
       params: {
         sort: "-createdAt",
-        limit: 50,
+        limit: 20,
+        page: pageParam,
       },
     });
   }

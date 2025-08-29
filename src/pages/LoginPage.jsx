@@ -11,7 +11,7 @@ import { isLoginContext } from "../contexts/IsLoginContext";
 import logo from "../assets/images/icon.svg";
 import loginGirl from "../assets/images/log-in-girl.svg";
 
-export default function LoginPage({ toggleTheme }) {
+export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [errMsg, setErrMsg] = useState("");
   const [isVisible, setIsVisible] = useState(false);
@@ -84,11 +84,8 @@ export default function LoginPage({ toggleTheme }) {
         </div>
 
         {/* Form Container */}
-        <div className="w-full md:w-1/2 relative p-1.5 h-fit circle-border rounded-[38px] overflow-hidden">
-          <div className="relative z-10 w-full h-fit px-4 md:px-10 py-12 backdrop-blur-lg shadow-2xl bg-white dark:bg-slate-700 rounded-4xl">
-            <div className="absolute top-2.5 hover:animate-pulse animate-bounce left-1/2 -translate-x-1/2">
-              <ToggleTheme toggleTheme={toggleTheme} />
-            </div>
+        <div className="w-full md:w-1/2 relative p-1.5 h-fit circle-border  rounded-[38px] overflow-hidden">
+          <div className="relative z-10 w-full h-fit px-4 md:px-10 py-12 backdrop-blur-3xl shadow-2xl bg-white/80 dark:bg-slate-700/80 rounded-4xl">
             <div className="mb-7">
               <h2 className="text-center font-bold text-4xl text-shadow-lg text-shadow-sky-300">
                 Welcome Back
@@ -108,7 +105,7 @@ export default function LoginPage({ toggleTheme }) {
                   // isRequired
                   classNames={{
                     inputWrapper:
-                      "border-2 border-blue-500/40 hover:border-blue-500/70 group-data-[focus=true]:border-blue-500",
+                      "border-2 border-blue-500/40 hover:border-blue-500/70 group-data-[focus=true]:border-blue-500 group-data-[focus=true]:hover:border-blue-500 group-data-[focus=true]:dark:bg-gray-600 bg-gray-50 dark:bg-gray-700",
                   }}
                   label="Email"
                   type="email"
@@ -129,7 +126,7 @@ export default function LoginPage({ toggleTheme }) {
                   // isRequired
                   classNames={{
                     inputWrapper:
-                      "border-2 border-blue-500/40 hover:border-blue-500/70 group-data-[focus=true]:border-blue-500",
+                      "border-2 border-blue-500/40 hover:border-blue-500/70 group-data-[focus=true]:border-blue-500 group-data-[focus=true]:hover:border-blue-500 group-data-[focus=true]:dark:bg-gray-600 bg-gray-50 dark:bg-gray-700",
                   }}
                   className=""
                   label="Password"

@@ -128,7 +128,7 @@ export default function NavbarComponent({ toggleTheme }) {
         )}
         <NavbarItem>
           <a
-            href="https://github.com/IbrahimEissa98?tab=repositories"
+            href="https://github.com/IbrahimEissa98/social-app-reactQuery"
             target="_blank"
           >
             <svg

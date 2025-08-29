@@ -154,11 +154,17 @@ export default function LeftSidebar() {
       </div>
 
       {/* Links */}
-      <div className="flex flex-wrap gap-x-4 font-semibold mt-5 text-blue-500 *:hover:underline">
+      <div className="flex flex-col gap-3 flex-wrap font-semibold mt-5 text-blue-500 *:hover:underline">
         <Link>Privacy Terms</Link>
         <Link>Advertising</Link>
         <Link>Cookies</Link>
-        <Link>Platform © 2025</Link>
+        <Link
+          to="https://github.com/IbrahimEissa98?tab=repositories"
+          target="_blank"
+          className=""
+        >
+          Platform © <span className="">Ibrahim Eissa</span> 2025
+        </Link>
       </div>
     </>
   );
