@@ -1,12 +1,14 @@
+// import { useRef } from "react";
 import logo from "../assets/images/icon.svg";
 import { Spinner } from "@heroui/react";
 
 export default function LoadingPage() {
+  // const loader = useRef();
   return (
     <>
       <div
-        className="fixed inset-0 bg-white dark:bg-slate-950 z-50 flex justify-center items-center flex-col "
-        id="loader"
+        className="loader fixed inset-0 bg-white dark:bg-slate-950 z-50 flex justify-center items-center flex-col "
+        // ref={loader}
       >
         <img
           className="block w-24 h-24 rounded-full border-3 border-blue-500"

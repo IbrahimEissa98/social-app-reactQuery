@@ -21,7 +21,7 @@ import LoadingPage from "./components/LoadingPage";
 
 function App() {
   const [theme, setTheme] = useState(null);
-  const [showLoadingPage, setShowLoadingPage] = useState(true);
+  // const [showLoadingPage, setShowLoadingPage] = useState(true);
 
   useEffect(() => {
     if (!("theme" in localStorage)) {
@@ -41,11 +41,11 @@ function App() {
       }
     }
 
-    window.addEventListener("load", () => {
-      setTimeout(() => {
-        setShowLoadingPage(false);
-      }, 2000);
-    });
+    // window.addEventListener("load", () => {
+    //   setTimeout(() => {
+    //     setShowLoadingPage(false);
+    //   }, 2000);
+    // });
   }, []);
 
   function toggleTheme() {
@@ -123,7 +123,7 @@ function App() {
   ]);
   return (
     <>
-      {showLoadingPage && <LoadingPage />}
+      {/* {showLoadingPage && <LoadingPage />} */}
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools />
         <RouterProvider router={router}></RouterProvider>

@@ -31,7 +31,7 @@ export default function PostHeader({ post, photo, name, time }) {
         )}
       </Link>
       <div className="name-time ms-2">
-        <span className="span1 text-lg font-bold">
+        <span className="span1 text-lg font-bold capitalize">
           <p>{name}</p>
         </span>
         <span className="span2 flex items-center text-gray-500 text-xs">

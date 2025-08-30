@@ -29,7 +29,8 @@ export default function CreatePost({ handleOpen, setIsCreate }) {
             style={{ paddingInline: "15px" }}
             className="bg-gray-200 dark:bg-gray-600/50 w-full text-start px-8 py-2 ms-4 rounded-3xl sm:tracking-wide justify-start text-xs sm:text-medium"
           >
-            What's on your mind, {user?.name} ?
+            What's on your mind,
+            <span className="capitalize p-0 m-0">{user?.name}</span>?
           </Button>
           <span className="sm:hidden">
             <i

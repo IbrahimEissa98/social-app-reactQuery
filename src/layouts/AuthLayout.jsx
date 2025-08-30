@@ -1,8 +1,33 @@
 import { Outlet } from "react-router-dom";
+import LoadingPage from "../components/LoadingPage";
+import { useEffect, useState } from "react";
 
 export default function AuthLayout() {
+  const [showLoadingPage, setShowLoadingPage] = useState(true);
+
+  let loaderTimer = () => {
+    setTimeout(() => {
+      setShowLoadingPage(false);
+      // document.querySelector(".loader").classList.add("hidden!");
+    }, 2000);
+  };
+
+  useEffect(() => {
+    loaderTimer();
+    // let authLoadingPage = window.addEventListener("load", loaderTimer);
+    console.log("Main Mount");
+
+    return () => {
+      // removeEventListener("load", authLoadingPage);
+      clearTimeout(loaderTimer);
+      console.log("Main UnMount");
+    };
+  }, []);
+
   return (
     <>
+      {showLoadingPage && <LoadingPage />}
+
       <div
         className={`relative flex justify-center items-center py-4 md:py-8 overflow-hidden min-h-screen bg-radial from-indigo-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800`}
       >

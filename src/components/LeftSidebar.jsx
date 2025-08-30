@@ -36,7 +36,9 @@ export default function LeftSidebar() {
             className="w-[40px] h-[40px] rounded-full"
             alt=""
           />
-          <h3 className="text-center text-xl font-semibold">{user?.name}</h3>
+          <h3 className="text-center text-xl font-semibold capitalize">
+            {user?.name}
+          </h3>
         </Link>
         <div className="flex justify-between ">
           <div className="flex flex-col items-center">
