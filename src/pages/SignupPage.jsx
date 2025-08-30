@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Form, Input, Button, Select, SelectItem } from "@heroui/react";
-import ToggleTheme from "../components/ToggleTheme";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "../schemas/registerSchema";
@@ -32,7 +31,7 @@ export default function SignupPage() {
       dateOfBirth: "",
       gender: "",
     },
-    // mode: "onTouched",
+    mode: "onTouched",
     resolver: zodResolver(registerSchema),
   });
 
