@@ -20,9 +20,9 @@ export default function LoadingPage() {
         </h2>
         <Spinner variant="wave" size="lg" />
 
-        <p className="absolute bottom-3 left-1/2 -translate-x-1/2 text-blue-500 font-semibold">
-          Copyrights © Ibrahim Eissa
-        </p>
+        <div className="absolute w-full text-center bottom-3 left-1/2 -translate-x-1/2 text-blue-500 font-semibold">
+          <p>Copyrights © Ibrahim Eissa</p>
+        </div>
       </div>
     </>
   );
